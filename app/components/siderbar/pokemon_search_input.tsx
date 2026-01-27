@@ -41,7 +41,7 @@ export default function PokemonSearchInput() {
       <label htmlFor="search" className="text-xl font-semibold text-white">
         Search
       </label>
-      <div className="mt-1 rounded-md bg-white/5 outline-1 -outline-offset-1 outline-gray-600 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-slate-500">
+      <div className="mt-1 rounded-md bg-white/5 outline-1 -outline-offset-1 outline-zinc-500 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-slate-500">
         <input
           name="search"
           type="search"
@@ -54,7 +54,7 @@ export default function PokemonSearchInput() {
             }
           }}
           value={searchInput}
-          className="block w-full grow bg-gray-800 p-2 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm"
+          className="block w-full grow bg-zinc-700 p-2 text-base text-white placeholder:text-zinc-500 focus:outline-none sm:text-sm"
         />
       </div>
       <PokemonSearchResults

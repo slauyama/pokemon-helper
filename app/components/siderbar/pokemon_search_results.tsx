@@ -49,7 +49,7 @@ function PokemonSearchResultsItem({
   }
   return (
     <li
-      className="p-1 hover:bg-gray-700 rounded-sm cursor-pointer"
+      className="p-1 hover:bg-zinc-600 rounded-sm cursor-pointer"
       onClick={handleClick}
     >
       {capitalize(pokemonName)}
@@ -72,7 +72,7 @@ export function PokemonSearchResults({
   }
 
   return (
-    <ul className="absolute z-10 bg-gray-800 w-56 p-2 rounded-md mt-2">
+    <ul className="absolute z-10 bg-zinc-700 w-56 p-2 rounded-md mt-2">
       {pokemon.map((pokemonName, index) => {
         if (index < SEARCH_RESULT_SIZE) {
           return (
