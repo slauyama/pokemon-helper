@@ -5,6 +5,13 @@ export function capitalize(string: string): string {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+export function prettyPokemonName(str: string): string {
+  return str
+    .split("-")
+    .map((str) => capitalize(str))
+    .join(" ");
+}
+
 export function parseJson(string: string) {
   try {
     return JSON.parse(string);

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { SimplifiedPokemon } from "../../types";
-import { capitalize } from "../../helpers/helper";
+import { prettyPokemonName } from "../../helpers/helper";
 import { PokemonSprite } from "../pokemon_sprite";
 import { PokemonTypeBadge } from "../pokemon_type_badge";
 import { useParty } from "../../hooks/use_party";
@@ -20,7 +20,7 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
 
   if (pokemon === undefined) {
     return (
-      <div className="flex border rounded-xs border-dotted h-13 items-center justify-center">
+      <div className="flex border border-zinc-500 bg-zinc-800 rounded-xs border-dotted h-13 items-center justify-center">
         Add a Pokemon
       </div>
     );
@@ -32,7 +32,7 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
         <PokemonSprite id={pokemon.id} />
         <div className="flex-col">
           <h3 className="text-lg text-nowrap text-ellipsis overflow-hidden">
-            {capitalize(pokemon.name)}
+            {prettyPokemonName(pokemon.name)}
           </h3>
           <div className="flex gap-1">
             {pokemon?.types?.map((type, index) => {

@@ -54,7 +54,7 @@ export default function PokemonSearchInput() {
             }
           }}
           value={searchInput}
-          className="block w-full grow bg-zinc-700 p-2 text-base text-white placeholder:text-zinc-500 focus:outline-none sm:text-sm"
+          className="rounded-md block w-full grow bg-zinc-700 p-2 text-base text-white placeholder:text-zinc-500 focus:outline-none sm:text-sm"
         />
       </div>
       <PokemonSearchResults

@@ -1,7 +1,7 @@
 "use client";
 
 import { localStorageFetch } from "../../helpers/fetch";
-import { capitalize } from "../../helpers/helper";
+import { prettyPokemonName } from "../../helpers/helper";
 import { useParty } from "../../hooks/use_party";
 import { Pokemon, SimplifiedPokemon } from "../../types";
 
@@ -52,7 +52,7 @@ function PokemonSearchResultsItem({
       className="p-1 hover:bg-zinc-600 rounded-sm cursor-pointer"
       onClick={handleClick}
     >
-      {capitalize(pokemonName)}
+      {prettyPokemonName(pokemonName)}
     </li>
   );
 }
