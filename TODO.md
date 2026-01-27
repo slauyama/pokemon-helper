@@ -6,7 +6,6 @@
   - Add Clear button to auto clear everything
   - Sort by startsWith first and then add on includes to limit
   - keyboard controls to select an item from results
-- See a score of how well balanced the team is.
 - Fix max width of pokemon use text elipsis and no wrap
 - Save team to localStorage as well
 - add about and limitations
@@ -22,6 +21,7 @@
 - Detect light/dark mode
 - Evolve / Devolve pokemon
 - Build in mobile mode
+- See a score of how well balanced the team is.
 - make sidebar fixed and scorll up and down
 - Toast to show error when team is full
 - custom pokemon slot that allows for manual pokemon type to be entered
