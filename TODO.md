@@ -12,7 +12,6 @@
 - Save team to localStorage as well
 - add about and limitations
   - limitation on offense only accounts for STAB moves
-- make deployable to github pages
 
 ### Maybes
 
