@@ -1,22 +1,22 @@
 import { POKE_API_BASE_URL } from "../constants";
 import { parseJson } from "./helper";
 
-export async function localStorageFetch({
+export async function localStorageFetch<T>({
   url,
   queryString,
-  filterFunction,
+  projectionFunction,
 }: {
   url: string;
   queryString?: string;
-  filterFunction?: (json: any) => any;
-}): Promise<any> {
+  projectionFunction?: (json: any) => T;
+}): Promise<T> {
   let fetchesObject: Record<string, string> = {};
   const fetches = localStorage.getItem("fetches");
   if (fetches) {
     fetchesObject = parseJson(fetches);
 
     if (fetchesObject[url]) {
-      return fetchesObject[url];
+      return fetchesObject[url] as T;
     }
   }
 
@@ -29,8 +29,8 @@ export async function localStorageFetch({
     }
     let json = await response.json();
 
-    if (filterFunction) {
-      json = filterFunction(json);
+    if (projectionFunction) {
+      json = projectionFunction(json);
     }
 
     fetchesObject[url] = json;

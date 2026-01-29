@@ -13,11 +13,12 @@ export default function PokemonSearchInput() {
 
   useEffect(() => {
     async function fetchAllPokemon() {
-      const allPokemon = await localStorageFetch({
+      const allPokemon = await localStorageFetch<string[]>({
         url: "pokemon",
-        queryString: "limit=100000&offset=0",
-        filterFunction: (searchPokemonResults: PokemonApiSearchResultWrapper) =>
-          searchPokemonResults.results.map(({ name }) => name),
+        queryString: "limit=100000",
+        projectionFunction: (
+          searchPokemonResults: PokemonApiSearchResultWrapper,
+        ) => searchPokemonResults.results.map(({ name }) => name),
       });
 
       setAllPokemon(allPokemon);

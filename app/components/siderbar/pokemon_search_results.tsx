@@ -18,9 +18,9 @@ function PokemonSearchResultsItem({
   const { addToParty } = useParty();
 
   async function handleClick() {
-    const pokemon = await localStorageFetch({
+    const pokemon = await localStorageFetch<SimplifiedPokemon>({
       url: `pokemon/${pokemonName}`,
-      filterFunction: (pokemon: Pokemon): SimplifiedPokemon => {
+      projectionFunction: (pokemon: Pokemon): SimplifiedPokemon => {
         const { front_default } = { ...pokemon.sprites };
         const {
           abilities,
