@@ -14,6 +14,7 @@
 - Change view when selecting a pokemon
   - See stats of pokemon potentially moves
 - Trash can icon not loading on pages
+- Update favicon
 
 ### Maybes
 
