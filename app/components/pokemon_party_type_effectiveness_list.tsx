@@ -7,6 +7,70 @@ type TypeCount = [PokemonType, number];
 
 const { SUPER_EFFECTIVE, NOT_VERY_EFFECTIVE, NO_EFFECT } = DamageCalculation;
 
+interface PokemonTypeEffectivenessListItemProps {
+  count: number;
+  damageCalculation: DamageCalculation;
+  offensive: boolean;
+  type: PokemonType;
+}
+export function PokemonTypeEffectivenessListItem({
+  count,
+  damageCalculation,
+  offensive,
+  type,
+}: PokemonTypeEffectivenessListItemProps) {
+  function getFontWeight(): "" | "font-bold" | "font-semibold" {
+    if (offensive || count < 2) {
+      return "";
+    }
+    if (count >= 4) {
+      return "font-bold";
+    }
+    return "font-semibold";
+  }
+
+  function getFontColor():
+    | ""
+    | "text-red-300"
+    | "text-red-600"
+    | "text-green-300"
+    | "text-green-600" {
+    if (
+      offensive ||
+      count < 3 ||
+      (damageCalculation !== SUPER_EFFECTIVE &&
+        damageCalculation !== NOT_VERY_EFFECTIVE)
+    ) {
+      return "";
+    }
+
+    const colorMap = {
+      [SUPER_EFFECTIVE]: {
+        low: "text-red-300" as const,
+        high: "text-red-600" as const,
+      },
+      [NOT_VERY_EFFECTIVE]: {
+        low: "text-green-300" as const,
+        high: "text-green-600" as const,
+      },
+    };
+
+    return count >= 5
+      ? colorMap[damageCalculation].high
+      : colorMap[damageCalculation].low;
+  }
+
+  let fontWeight = getFontWeight();
+  let fontColor = getFontColor();
+
+  return (
+    <li key={type} className="flex gap-1">
+      <PokemonTypeBadge pokemonType={type} />
+      <p className={`w-5 ${fontColor} ${fontWeight}`}>x{count}</p>
+    </li>
+  );
+}
+
 interface PokemonTypeEffectivenessListProps {
   damageCalculation: Exclude<DamageCalculation, DamageCalculation.NORMAL>;
   typeMap: Partial<Record<PokemonType, number>>;
@@ -47,31 +111,13 @@ export function PokemonTypeEffectivenessList({
       </h4>
       <ul className="flex mt-1 max-w-64 flex-wrap gap-2">
         {convertToTypeCount(typeMap).map(([type, count]) => {
-          let fontWeight = "";
-          let fontColor = "";
-          if (!offensive) {
-            if (count > 4) {
-              fontWeight = "font-bold";
-              if (damageCalculation === SUPER_EFFECTIVE) {
-                fontColor = "text-red-600";
-              } else if (damageCalculation === NOT_VERY_EFFECTIVE) {
-                fontColor = "text-green-600";
-              }
-            } else if (count > 2) {
-              fontWeight = "font-semibold";
-              if (damageCalculation === SUPER_EFFECTIVE) {
-                fontColor = "text-red-300";
-              } else if (damageCalculation === NOT_VERY_EFFECTIVE) {
-                fontColor = "text-green-300";
-              }
-            }
-          }
-
           return (
-            <li key={type} className="flex gap-1">
-              <PokemonTypeBadge pokemonType={type} />
-              <p className={`w-5 ${fontColor} ${fontWeight}`}>x{count}</p>
-            </li>
+            <PokemonTypeEffectivenessListItem
+              count={count}
+              offensive={offensive}
+              damageCalculation={damageCalculation}
+              type={type}
+            />
           );
         })}
       </ul>
