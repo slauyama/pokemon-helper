@@ -113,6 +113,7 @@ export function PokemonTypeEffectivenessList({
         {convertToTypeCount(typeMap).map(([type, count]) => {
           return (
             <PokemonTypeEffectivenessListItem
+              key={type}
               count={count}
               offensive={offensive}
               damageCalculation={damageCalculation}
