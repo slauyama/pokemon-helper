@@ -1,8 +1,5 @@
 ## Pokemon Team Builder Todo
 
-- Search Input
-  - Add Clear button to auto clear everything
-  - keyboard controls to select an item from results
 - Fix max width of pokemon use text elipsis and no wrap
 - Save team to localStorage as well
 - add about and limitations
@@ -12,10 +9,12 @@
   - See stats of pokemon potentially moves
 - Trash can icon not loading on pages
 - Update favicon
-- Detect image loading to avoid showing alt before rendering
 
 ### Maybes
 
+- Typeahead
+  - Add Clear button to auto clear everything
+  - keyboard controls to select an item from results
 - Add tests
 - Detect light/dark mode
 - Evolve / Devolve pokemon
