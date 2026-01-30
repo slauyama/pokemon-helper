@@ -21,7 +21,7 @@ export function Typeahead({
 
   function handleBlur({ relatedTarget }: FocusEvent<HTMLInputElement>) {
     if (!relatedTarget || !containerRef.current?.contains(relatedTarget)) {
-      // setIsOpen(false);
+      setIsOpen(false);
     }
   }
 
