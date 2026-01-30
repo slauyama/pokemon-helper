@@ -6,6 +6,7 @@ import { prettyPokemonName } from "../../helpers/helper";
 import { PokemonSprite } from "../pokemon_sprite";
 import { PokemonTypeBadge } from "../pokemon_type_badge";
 import { useParty } from "../../hooks/use_party";
+import { useEffect } from "react";
 
 interface PokemonRowProps {
   pokemon?: SimplifiedPokemon;
@@ -54,7 +55,10 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
 }
 
 export default function Party() {
-  const { party, removeFromParty } = useParty();
+  const { party, loadPartyFromLocalStorage, removeFromParty } = useParty();
+  useEffect(() => {
+    loadPartyFromLocalStorage();
+  }, []);
 
   return (
     <div>

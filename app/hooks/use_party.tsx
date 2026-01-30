@@ -19,5 +19,9 @@ export function useParty() {
     [dispatch],
   );
 
-  return { ...state, addToParty, removeFromParty };
+  const loadPartyFromLocalStorage = useCallback(() => {
+    dispatch({ type: "LOAD_PARTY_FROM_LOCAL_STORAGE" });
+  }, [dispatch]);
+
+  return { ...state, addToParty, removeFromParty, loadPartyFromLocalStorage };
 }

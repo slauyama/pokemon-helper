@@ -1,5 +1,4 @@
 import { MouseEvent, useState } from "react";
-import {} from "./type";
 
 interface TypeaheadResultsListItemProps {
   closeResultsList: () => void;

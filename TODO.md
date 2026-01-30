@@ -1,7 +1,6 @@
 ## Pokemon Team Builder Todo
 
 - Fix max width of pokemon use text elipsis and no wrap
-- Save team to localStorage as well
 - add about and limitations
   - limitation on offense only accounts for STAB moves
   - limitation should talk about abilities

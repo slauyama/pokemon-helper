@@ -1,16 +1,28 @@
 "use client";
 
-import { createContext, Dispatch, ReactNode, use, useReducer } from "react";
-import { useLocalStorage } from "@slauyama/hooks";
+import { createContext, Dispatch, ReactNode, useReducer } from "react";
 import { MAX_POKEMON_PARTY_SIZE } from "../constants";
 import { SimplifiedPokemon } from "../types";
+import { parseJson } from "../helpers/helper";
 
 type PokemonPartyActions =
   | { type: "ADD_TO_PARTY"; pokemon: SimplifiedPokemon }
-  | { type: "REMOVE_FROM_PARTY"; pokemonName: string };
+  | { type: "REMOVE_FROM_PARTY"; pokemonName: string }
+  | { type: "LOAD_PARTY_FROM_LOCAL_STORAGE" };
 
 interface PokemonPartyState {
   party: SimplifiedPokemon[];
+}
+
+function savePartyToLocalStorage(party: SimplifiedPokemon[]) {
+  try {
+    localStorage.setItem("party", JSON.stringify(party));
+  } catch (error) {
+    console.error(
+      "Storage quota exceeded or localStorage not available",
+      error,
+    );
+  }
 }
 
 function pokemonPartyReducer(
@@ -22,6 +34,7 @@ function pokemonPartyReducer(
       if (state.party.length < MAX_POKEMON_PARTY_SIZE) {
         const newParty = [...state.party];
         newParty.push(action.pokemon);
+        savePartyToLocalStorage(newParty);
         return {
           party: newParty,
         };
@@ -33,9 +46,18 @@ function pokemonPartyReducer(
         (pokemon) => pokemon.name === action.pokemonName,
       );
       newParty.splice(index, 1);
-
+      savePartyToLocalStorage(newParty);
       return {
         party: newParty,
+      };
+    case "LOAD_PARTY_FROM_LOCAL_STORAGE":
+      const stringifiedParty = localStorage.getItem("party") as string;
+      if (stringifiedParty) {
+        const party = parseJson(stringifiedParty) as SimplifiedPokemon[];
+        return { party };
+      }
+      return {
+        party: [],
       };
     default:
       throw new Error("Unexpected action dispatched");
