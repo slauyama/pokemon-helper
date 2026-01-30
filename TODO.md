@@ -7,7 +7,10 @@
 - Change view when selecting a pokemon
   - See stats of pokemon potentially moves
 - Trash can icon not loading on pages
-- Update favicon
+- Detect light/dark mode
+- Use useSound api
+  - add pokemon noise for adding to party
+- Create some animations when adding
 
 ### Maybes
 
@@ -15,7 +18,6 @@
   - Add Clear button to auto clear everything
   - keyboard controls to select an item from results
 - Add tests
-- Detect light/dark mode
 - Evolve / Devolve pokemon
 - Build in mobile mode
 - See a score of how well balanced the team is.
