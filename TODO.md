@@ -12,6 +12,7 @@
   - See stats of pokemon potentially moves
 - Trash can icon not loading on pages
 - Update favicon
+- Detect image loading to avoid showing alt before rendering
 
 ### Maybes
 

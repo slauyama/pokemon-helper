@@ -1,19 +1,17 @@
 import { MouseEvent } from "react";
-import { TailwindColor } from "./type";
+import {} from "./type";
 
 interface TypeaheadResultsListItemProps {
   closeResultsList: () => void;
   item: string;
   onItemClick?: (item: string) => void;
   tabIndex?: number;
-  tailwindColor: TailwindColor;
 }
 function TypeaheadResultsListItem({
   closeResultsList,
   item,
   onItemClick,
   tabIndex = 0,
-  tailwindColor,
 }: TypeaheadResultsListItemProps) {
   async function handleClick(e: MouseEvent<HTMLLIElement>) {
     // Prevent the default blur behavior
@@ -26,7 +24,7 @@ function TypeaheadResultsListItem({
   }
   return (
     <li
-      className={`p-2 hover:bg-${tailwindColor}-600 rounded-sm cursor-pointer`}
+      className={`p-2 hover:bg-zinc-600 rounded-sm cursor-pointer`}
       onClick={handleClick}
       tabIndex={tabIndex}
       role="option"
@@ -43,7 +41,6 @@ interface TypeaheadResultsListProps {
   maxListSize?: number;
   onItemClick?: (item: string) => void;
   setIsOpen: (isOpen: boolean) => void;
-  tailwindColor: TailwindColor;
 }
 export function TypeaheadResultsList({
   isOpen,
@@ -51,7 +48,6 @@ export function TypeaheadResultsList({
   maxListSize = 10,
   onItemClick,
   setIsOpen,
-  tailwindColor,
 }: TypeaheadResultsListProps) {
   if (!isOpen) {
     return null;
@@ -59,7 +55,7 @@ export function TypeaheadResultsList({
 
   return (
     <ul
-      className={`absolute w-full z-10 bg-${tailwindColor}-700 p-2 rounded-md mt-2 outline-1 outline-${tailwindColor}-600`}
+      className={`absolute w-full z-10 bg-zinc-700 p-2 rounded-md mt-2 outline-1 outline-zinc-600`}
       role="listbox"
     >
       {list.length === 0 ? (
@@ -73,7 +69,6 @@ export function TypeaheadResultsList({
                 closeResultsList={() => setIsOpen(false)}
                 item={item}
                 onItemClick={onItemClick}
-                tailwindColor={tailwindColor}
               />
             );
           }
