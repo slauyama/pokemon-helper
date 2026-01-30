@@ -6,7 +6,7 @@ import { prettyPokemonName } from "../../helpers/helper";
 import { PokemonSprite } from "../pokemon_sprite";
 import { PokemonTypeBadge } from "../pokemon_type_badge";
 import { useParty } from "../../hooks/use_party";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useIsDarkMode } from "@slauyama/hooks";
 
 interface PokemonRowProps {
@@ -32,7 +32,7 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
   return (
     <div className="flex justify-between">
       <div className="flex align-middle gap-2">
-        <PokemonSprite id={pokemon.id} />
+        <PokemonSprite id={pokemon.id} name={pokemon.name} />
         <div className="flex-col">
           <h3 className="text-lg text-nowrap text-ellipsis overflow-hidden">
             {prettyPokemonName(pokemon.name)}

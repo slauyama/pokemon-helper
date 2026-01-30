@@ -1,6 +1,7 @@
 import { PokemonPartyProvider } from "./components/pokemon_party_provider";
 import { Sidebar } from "./components/siderbar/sidebar";
 import PokemonPartyTypeEffectiveness from "./components/pokemon_party_type_effectiveness";
+import { PokemonAudioProvider } from "./components/pokemon_audio_provider";
 
 export default function Home() {
   return (
@@ -8,12 +9,14 @@ export default function Home() {
       <main className="flex min-h-screen gap-6 w-full max-w-5xl flex-col items-center p-4 sm:items-start">
         <h1 className="text-3xl font-bold">Pokemon Team Builder</h1>
         <div className="flex gap-6 w-full">
-          <PokemonPartyProvider>
-            <Sidebar />
-            <div className="grow">
-              <PokemonPartyTypeEffectiveness />
-            </div>
-          </PokemonPartyProvider>
+          <PokemonAudioProvider>
+            <PokemonPartyProvider>
+              <Sidebar />
+              <div className="grow">
+                <PokemonPartyTypeEffectiveness />
+              </div>
+            </PokemonPartyProvider>
+          </PokemonAudioProvider>
         </div>
       </main>
     </div>

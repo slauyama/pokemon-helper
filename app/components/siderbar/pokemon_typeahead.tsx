@@ -10,6 +10,7 @@ import {
 import { Typeahead } from "../typeahead/typeahead";
 import { prettyPokemonName, serializePokemonName } from "@/app/helpers/helper";
 import { useParty } from "@/app/hooks/use_party";
+import { usePokemonAudio } from "@/app/hooks/use_pokemon_audio";
 
 const MAX_LIST_SIZE = 10;
 
@@ -17,6 +18,7 @@ export default function PokemonTypeahead() {
   const [allPokemon, setAllPokemon] = useState<string[]>([]);
   const [filteredPokemon, setFilteredPokemon] = useState<string[]>([]);
   const { addToParty } = useParty();
+  const { addNewAudio } = usePokemonAudio();
 
   useEffect(() => {
     async function fetchAllPokemon() {
@@ -64,6 +66,11 @@ export default function PokemonTypeahead() {
       url: `pokemon/${pokemonName}`,
       projectionFunction: (pokemon: Pokemon): SimplifiedPokemon => {
         const { front_default } = { ...pokemon.sprites };
+        const { latest } = { ...pokemon.cries };
+
+        if (latest) {
+          addNewAudio(latest);
+        }
         const {
           abilities,
           base_experience,

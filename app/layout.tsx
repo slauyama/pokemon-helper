@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pokemon Team Builder",
-  description: "App to help me beat pokerogue....",
+  description:
+    "Web App to help you beat PokeRogue. Add your Pokemon and see what weaknesses and strength's your team has.",
 };
 
 export default function RootLayout({

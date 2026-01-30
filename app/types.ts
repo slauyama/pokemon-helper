@@ -31,12 +31,17 @@ interface PokemonApiTypes {
   };
 }
 
+interface PokemonCries {
+  latest?: string;
+  legacy?: string;
+}
+
 export interface Pokemon {
   name: string;
   id: number;
   abilities: unknown[];
   base_experience: number;
-  cries: unknown;
+  cries: PokemonCries;
   forms: unknown[];
   game_indices: unknown[];
   height: number;

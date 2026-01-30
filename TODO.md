@@ -6,9 +6,6 @@
   - limitation should talk about abilities
 - Change view when selecting a pokemon
   - See stats of pokemon potentially moves
-- Trash can icon not loading on pages
-- Use useSound api
-  - add pokemon noise for adding to party
 - Create some animations when adding
 - Figure out transition for colors between dark mode
 
