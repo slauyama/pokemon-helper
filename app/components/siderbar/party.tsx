@@ -6,13 +6,15 @@ import { prettyPokemonName } from "../../helpers/helper";
 import { PokemonSprite } from "../pokemon_sprite";
 import { PokemonTypeBadge } from "../pokemon_type_badge";
 import { useParty } from "../../hooks/use_party";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useIsDarkMode } from "@slauyama/hooks";
 
 interface PokemonRowProps {
   pokemon?: SimplifiedPokemon;
   removeFromParty: (pokemonName: string) => void;
 }
 function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
+  const [isDarkMode] = useIsDarkMode();
   function handleClick() {
     if (pokemon?.name) {
       removeFromParty(pokemon?.name);
@@ -21,7 +23,7 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
 
   if (pokemon === undefined) {
     return (
-      <div className="flex border border-zinc-500 bg-zinc-800 rounded-xs border-dotted h-13 items-center justify-center">
+      <div className="flex border border-zinc-400 dark:border-zinc-500 bg-zinc-100 dark:bg-zinc-800 rounded-xs border-dotted h-13 items-center justify-center">
         Add a Pokemon
       </div>
     );
@@ -45,10 +47,20 @@ function PokemonRow({ pokemon, removeFromParty }: PokemonRowProps) {
         </div>
       </div>
       <button
-        className="rounded-md cursor-pointer hover:bg-zinc-800 px-2"
+        className="rounded-md cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-800 px-2"
         onClick={handleClick}
       >
-        <Image src="/trash_can.svg" alt="trash can" width={15} height={15} />
+        <svg
+          fill={isDarkMode ? "#FFF" : "#000"}
+          width="15px"
+          height="15px"
+          viewBox="0 0 32 32"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <title>trash can</title>
+          <path d="M30 6.749h-5.331l-3.628-5.442c-0.228-0.337-0.609-0.556-1.041-0.557h-8c-0 0-0 0-0 0-0.432 0-0.813 0.219-1.037 0.552l-0.003 0.004-3.628 5.442h-5.332c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0h2.858l1.897 20.864c0.060 0.64 0.594 1.137 1.245 1.137 0 0 0 0 0.001 0h16c0 0 0 0 0 0 0.65 0 1.184-0.497 1.243-1.132l0-0.005 1.897-20.864h2.859c0.69 0 1.25-0.56 1.25-1.25s-0.56-1.25-1.25-1.25v0zM12.669 3.25h6.661l2.333 3.499h-11.327zM22.859 28.75h-13.718l-1.772-19.5 17.262-0.001zM11 10.75c-0.69 0-1.25 0.56-1.25 1.25v0 14c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-14c0-0.69-0.56-1.25-1.25-1.25v0zM16 10.75c-0.69 0-1.25 0.56-1.25 1.25v0 14c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-14c0-0.69-0.56-1.25-1.25-1.25v0zM21 10.75c-0.69 0-1.25 0.56-1.25 1.25v14c0 0.69 0.56 1.25 1.25 1.25s1.25-0.56 1.25-1.25v0-14c-0-0.69-0.56-1.25-1.25-1.25h-0z"></path>
+        </svg>
       </button>
     </div>
   );

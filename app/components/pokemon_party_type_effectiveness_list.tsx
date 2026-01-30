@@ -29,12 +29,7 @@ export function PokemonTypeEffectivenessListItem({
     return "font-semibold";
   }
 
-  function getFontColor():
-    | ""
-    | "text-red-300"
-    | "text-red-600"
-    | "text-green-300"
-    | "text-green-600" {
+  function getFontColor(): string {
     if (
       offensive ||
       count < 3 ||
@@ -46,12 +41,12 @@ export function PokemonTypeEffectivenessListItem({
 
     const colorMap = {
       [SUPER_EFFECTIVE]: {
-        low: "text-red-300" as const,
-        high: "text-red-600" as const,
+        low: "text-red-600 dark:text-red-300" as const,
+        high: "text-red-800 dark:text-red-600" as const,
       },
       [NOT_VERY_EFFECTIVE]: {
-        low: "text-green-300" as const,
-        high: "text-green-600" as const,
+        low: "text-green-600 dark:text-green-300" as const,
+        high: "text-green-800 dark:text-green-600" as const,
       },
     };
 
@@ -60,8 +55,8 @@ export function PokemonTypeEffectivenessListItem({
       : colorMap[damageCalculation].low;
   }
 
-  let fontWeight = getFontWeight();
-  let fontColor = getFontColor();
+  const fontWeight = getFontWeight();
+  const fontColor = getFontColor();
 
   return (
     <li key={type} className="flex gap-1">
