@@ -1,10 +1,7 @@
 ## Pokemon Team Builder Todo
 
 - Search Input
-  - Fix issue when clicking away from selection to close dialog
-  - Fix width of results to match input
   - Add Clear button to auto clear everything
-  - Sort by startsWith first and then add on includes to limit
   - keyboard controls to select an item from results
 - Fix max width of pokemon use text elipsis and no wrap
 - Save team to localStorage as well
