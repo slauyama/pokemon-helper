@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, Dispatch, ReactNode, useReducer } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useRef,
+} from "react";
 
 type PokemonAudioActions =
   | { type: "ADD_NEW_AUDIO"; audio: string }
@@ -41,10 +48,18 @@ export const PokemonAudioContext = createContext<{
 
 export function PokemonAudioProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(PokemonAudioReducer, initialState);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.05;
+    }
+  }, [audioRef]);
 
   return (
     <PokemonAudioContext.Provider value={{ state, dispatch }}>
       <audio
+        ref={audioRef}
         className="hidden"
         autoPlay
         src={state.audios[0]}
