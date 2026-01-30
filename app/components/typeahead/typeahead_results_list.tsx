@@ -1,10 +1,10 @@
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import {} from "./type";
 
 interface TypeaheadResultsListItemProps {
   closeResultsList: () => void;
   item: string;
-  onItemClick?: (item: string) => void;
+  onItemClick?: (item: string) => void | Promise<void>;
   tabIndex?: number;
 }
 function TypeaheadResultsListItem({
@@ -13,13 +13,19 @@ function TypeaheadResultsListItem({
   onItemClick,
   tabIndex = 0,
 }: TypeaheadResultsListItemProps) {
+  const [isDisabled, setIsDisabled] = useState(false);
   async function handleClick(e: MouseEvent<HTMLLIElement>) {
     // Prevent the default blur behavior
     e.preventDefault();
+    if (isDisabled) {
+      return;
+    }
+    setIsDisabled(true);
 
     if (onItemClick) {
-      onItemClick(item);
+      await Promise.resolve(onItemClick(item));
     }
+
     closeResultsList();
   }
   return (
@@ -28,6 +34,7 @@ function TypeaheadResultsListItem({
       onClick={handleClick}
       tabIndex={tabIndex}
       role="option"
+      aria-disabled={isDisabled}
       aria-selected={false}
     >
       {item}
@@ -39,7 +46,7 @@ interface TypeaheadResultsListProps {
   isOpen: boolean;
   list: string[];
   maxListSize?: number;
-  onItemClick?: (item: string) => void;
+  onItemClick?: (item: string) => void | Promise<void>;
   setIsOpen: (isOpen: boolean) => void;
 }
 export function TypeaheadResultsList({
