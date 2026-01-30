@@ -47,10 +47,30 @@ export function PokemonTypeEffectivenessList({
       </h4>
       <ul className="flex mt-1 max-w-64 flex-wrap gap-2">
         {convertToTypeCount(typeMap).map(([type, count]) => {
+          let fontWeight = "";
+          let fontColor = "";
+          if (!offensive) {
+            if (count > 4) {
+              fontWeight = "font-bold";
+              if (damageCalculation === SUPER_EFFECTIVE) {
+                fontColor = "text-red-600";
+              } else if (damageCalculation === NOT_VERY_EFFECTIVE) {
+                fontColor = "text-green-600";
+              }
+            } else if (count > 2) {
+              fontWeight = "font-semibold";
+              if (damageCalculation === SUPER_EFFECTIVE) {
+                fontColor = "text-red-300";
+              } else if (damageCalculation === NOT_VERY_EFFECTIVE) {
+                fontColor = "text-green-300";
+              }
+            }
+          }
+
           return (
             <li key={type} className="flex gap-1">
               <PokemonTypeBadge pokemonType={type} />
-              <p className="w-5">x{count}</p>
+              <p className={`w-5 ${fontColor} ${fontWeight}`}>x{count}</p>
             </li>
           );
         })}
