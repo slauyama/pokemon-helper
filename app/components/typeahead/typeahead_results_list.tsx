@@ -29,7 +29,7 @@ function TypeaheadResultsListItem({
   }
   return (
     <li
-      className={`p-2 hover:bg-zinc-600 rounded-sm cursor-pointer`}
+      className="p-2 hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded-sm cursor-pointer"
       onClick={handleClick}
       tabIndex={tabIndex}
       role="option"
@@ -61,7 +61,7 @@ export function TypeaheadResultsList({
 
   return (
     <ul
-      className={`absolute w-full z-10 bg-zinc-700 p-2 rounded-md mt-2 outline-1 outline-zinc-600`}
+      className={`absolute w-full z-10 bg-zinc-100 dark:bg-zinc-700 p-2 rounded-md mt-2 outline-1 outline-zinc-300 dark:outline-zinc-600`}
       role="listbox"
     >
       {list.length === 0 ? (

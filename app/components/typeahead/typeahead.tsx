@@ -43,13 +43,13 @@ export function Typeahead({
       </label>
       <div ref={containerRef} onBlur={handleBlur} className="relative">
         <div
-          className={`mt-1 rounded-md bg-white/5 outline-1 -outline-offset-1 outline-[-500 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-zinc-500`}
+          className={`mt-1 rounded-md bg-white/2 dark:bg-white/5 outline-1 -outline-offset-1 outline-[-500 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-zinc-400 dark:has-[input:focus-within]:outline-zinc-500`}
         >
           <input
             name="search"
             type="search"
             id="search"
-            className={`rounded-md block w-full grow bg-zinc-700 p-2 text-base placeholder:text-zinc-500 focus:outline-none sm:text-sm`}
+            className={`rounded-md block w-full grow bg-zinc-100 dark:bg-zinc-700 p-2 text-base placeholder:text-zinc-500 focus:outline-none sm:text-sm`}
             onInput={handleInput}
             onFocus={() => {
               if (Boolean(searchInput)) {
